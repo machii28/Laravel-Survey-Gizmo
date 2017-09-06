@@ -3,6 +3,7 @@
 	"type": "library",
 	"description": "Surveygizmo API Implementation",
 	"keywords" : ["third-party api","surveygizmo"],
+	"license" : "MIT",
 	"require" : {
 		"php": ">=5.6"
 	},
