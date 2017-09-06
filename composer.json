@@ -16,7 +16,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"SurveyGizmo\\" : "src/Machii/SurveyGizmo"
+			"Machii\\SurveyGizmo\\" : "src/"
 		}
 	}
 }
