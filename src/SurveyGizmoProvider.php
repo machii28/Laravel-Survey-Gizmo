@@ -1,16 +1,17 @@
 <?php
 
-namespace Machii\SurveyGizmo;
+namespace SurveyGizmo;
 
-use Machii\SurveyGizmo\SurveyGizmo;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Container\Container;
+use Illuminate\Support\ServiceProvider;
+use SurveyGizmo\SurveyGizmo;
 
-class SurveyGizmoProvider
+class SurveyGizmoProvider extends ServiceProvider
 {
 	public function register()
 	{
-		$this->app->singleton(SurveyGizmo::class, function(Container $app) {
+		$this->app->bind('surveygizmo', function(Container $app) {
 			return new SurveyGizmo($app);
 		});
 	}
@@ -31,7 +32,7 @@ class SurveyGizmoProvider
 		$this->mergeConfigFrom($configPath, 'surveygizmo');
 	}
 
-	private function packagePath($pat)
+	private function packagePath($path)
 	{
 		return __DIR__."/../$path";
 	}

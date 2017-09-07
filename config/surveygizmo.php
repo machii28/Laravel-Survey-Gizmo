@@ -20,7 +20,7 @@ return [
      | API key generated for accessing the SurveyGizmo
      |
      */
-    'api_key'    => env('SURVEY_GIZMO_API_KEY', '');
+    'api_key'    => env('SURVEY_GIZMO_API_KEY', ''),
 
     /*
      |--------------------------------------------------------------------
@@ -30,6 +30,17 @@ return [
      | Secret key generated for accessing the SurveyGizmo
      |
      */
-    'api_secret_token' => env('SURVEY_GIZMO_API_SECRET', '');
+    'api_secret_token' => env('SURVEY_GIZMO_API_SECRET', ''),
+
+    /*
+     |--------------------------------------------------------------------
+     | API url
+     |--------------------------------------------------------------------
+     |
+     | API url located in https://apihelp.surveygizmo.com/help
+     | The current version is Version 5
+     |
+     */
+    'api_url' => 'restapi.surveygizmo.com/v5',
 
 ];
