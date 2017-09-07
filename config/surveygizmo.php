@@ -20,7 +20,11 @@ return [
      | API key generated for accessing the SurveyGizmo
      |
      */
+<<<<<<< HEAD
     'api_key'    => env('SURVEY_GIZMO_API_KEY', ''),
+=======
+    'api_key'    => env('SURVEY_GIZMO_API_KEY', '');
+>>>>>>> 875145cefa754ae3f48a168e7b1d313830d0a720
 
     /*
      |--------------------------------------------------------------------
@@ -30,6 +34,10 @@ return [
      | Secret key generated for accessing the SurveyGizmo
      |
      */
+<<<<<<< HEAD
     'api_secret_token' => env('SURVEY_GIZMO_API_SECRET', ''),
+=======
+    'api_secret_token' => env('SURVEY_GIZMO_API_SECRET', '');
+>>>>>>> 875145cefa754ae3f48a168e7b1d313830d0a720
 
 ];
