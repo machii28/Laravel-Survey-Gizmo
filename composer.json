@@ -18,5 +18,10 @@
 		"psr-4": {
 			"SurveyGizmo\\" : "src/"
 		}
+	},
+	"extra": {
+		"branch-alias": {
+            "dev-master": "v1.1"
+        }
 	}
 }
