@@ -3,18 +3,35 @@
 namespace SurveyGizmo\Helper;
 
 use SurveyGizmo\SurveyGizmoCore;
-use GuzzleHttp\Client as Guzzle;
+use GuzzleHttp\Client;
+use \Exception;
 
+/**
+ * Account
+ *
+ * @category   Laravel SurveyGizmo
+ * @version    1.0.0
+ * @package    machii/laravel-surveygizmo
+ * @copyright  Copyright (c) 2017
+ * @author     Mark Cornelio <markcornelio28@gmail.com>
+ * @license    MIT
+ */
 class Account extends SurveyGizmoCore
 {
-	public static function authenticate()
+	/**
+	 * Authenticates user to user the SurveyGizmo API
+	 * @return object
+	 */
+	public function authenticate()
 	{
-		$client = new Guzzle();
+		$accountUrl = '/account';
 
-		$accountUrl = $this->getUrl() . '/account';
+		$response = $this->sendRequest($accountUrl);
 
-		$result = $client->request('GET', $accountUrl, [
-			'api_token' => $this->getToken()
-		]);
+		if (is_null($response)) {
+			throw new Exception("Error Authenticating Request", 1);
+		}
+
+		return $response;
 	}
 }

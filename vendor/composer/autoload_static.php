@@ -18,10 +18,7 @@ class ComposerStaticInit7c1de7956be6f3528406570e616e400f
         'S' => 
         array (
             'Symfony\\Component\\Yaml\\' => 23,
-        ),
-        'M' => 
-        array (
-            'Machii\\SurveyGizmo\\' => 19,
+            'SurveyGizmo\\' => 12,
         ),
         'D' => 
         array (
@@ -45,7 +42,7 @@ class ComposerStaticInit7c1de7956be6f3528406570e616e400f
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
         ),
-        'Machii\\SurveyGizmo\\' => 
+        'SurveyGizmo\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
