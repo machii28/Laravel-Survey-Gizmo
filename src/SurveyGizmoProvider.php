@@ -7,6 +7,16 @@ use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\ServiceProvider;
 use SurveyGizmo\SurveyGizmo;
 
+/**
+ * SurveyGizmoProvider
+ *
+ * @category   Laravel SurveyGizmo
+ * @version    1.0.0
+ * @package    machii/laravel-surveygizmo
+ * @copyright  Copyright (c) 2017
+ * @author     Mark Cornelio <markcornelio28@gmail.com>
+ * @license    MIT
+ */
 class SurveyGizmoProvider extends ServiceProvider
 {
 	public function register()

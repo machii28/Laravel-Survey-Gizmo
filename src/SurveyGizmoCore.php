@@ -2,6 +2,17 @@
 
 namespace SurveyGizmo;
 
+use GuzzleHttp\CLient;
+/**
+ * SurveyGizmoCore
+ *
+ * @category   Laravel SurveyGizmo
+ * @version    1.0.0
+ * @package    machii/laravel-surveygizmo
+ * @copyright  Copyright (c) 2017
+ * @author     Mark Cornelio <markcornelio28@gmail.com>
+ * @license    MIT
+ */
 abstract class SurveyGizmoCore
 {
 	/**
@@ -23,13 +34,20 @@ abstract class SurveyGizmoCore
 	protected $apiToken;
 
 	/**
+	 * Survey Id instance
+	 * @var string
+	 */
+	protected $surveyId;
+
+	/**
 	 * SurveyGizmoCore constructor
 	 */
-	protected function __construct()
+	public function __construct()
 	{
 		$this->setUrl();
 		$this->setToken();
 		$this->setKey();
+		$this->setSurveyId();
 	}
 
 	/**
@@ -96,5 +114,48 @@ abstract class SurveyGizmoCore
 	protected function getKey()
 	{
 		return $this->apiKey;
+	}
+
+	/**
+	 * Set Survey Id
+	 * @param string $surveyId
+	 */
+	protected function setSurveyId($surveyId = null)
+	{
+		$this->surveyId = $surveyId;
+
+		if (is_null($surveyId)) {
+			$this->surveyId = config('surveygizmo.survey_id');
+		}
+	}
+
+	/**
+	 * Get the Survey Id
+	 * @return string
+	 */
+	protected function getSurveyId()
+	{
+		return $this->surveyId;
+	}
+
+	/**
+	 * Send Request to SurveyGizmo API
+	 * @param  string $url
+	 * @param  array  $query
+	 * @return object
+	 */
+	protected function sendRequest($url, $query = null, $method = 'GET')
+	{
+		$client = new Client();
+		$query['api_token'] = $this->getToken();
+
+		$request = $client->request($method, $this->getUrl() . $url, [
+			'query' => $query
+		]);
+
+		$body = $request->getBody();
+		$response = json_decode($body->getContents());
+
+		return $response;
 	}
 }
