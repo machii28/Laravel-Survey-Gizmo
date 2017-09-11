@@ -43,7 +43,7 @@ class Response extends SurveyGizmoCore
 					$query[$key] = $value;
 				}
 			} else {
-				$query[$key] = $value;
+				$query[$parsedKey] = $parsedValue;
 			}
 		}
 
