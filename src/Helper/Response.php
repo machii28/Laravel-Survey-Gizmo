@@ -37,8 +37,14 @@ class Response extends SurveyGizmoCore
 			'_method' => 'PUT'
 		];
 
-		foreach($parsedAnswer as $key => $value) {
-			$query[$key] = $value;
+		foreach($parsedAnswer as $parsedKey => $parsedValue) {
+			if (is_array($parsedValue)) {
+				foreach($parsedValue as $key => $value) {
+					$query[$key] = $value;
+				}
+			} else {
+				$query[$key] = $value;
+			}
 		}
 
 		$response = $this->sendRequest($responseUrl, $query);
@@ -56,8 +62,15 @@ class Response extends SurveyGizmoCore
 		$parsedAnswer = [];
 
 		foreach($answers as $answer) {
-			$answer = $this->checkAnswer($answer);
-			array_push($parsedAnswer, $answer);
+			if (is_array($answer)) {
+				foreach($answer as $value) {
+					$answer = $this->parseAnswer($value);
+					array_push($parsedAnswer, $answer);
+				}
+			} else {
+				$answer = $this->parseAnswer($answer);
+				array_push($parsedAnswer, $answer);
+			}
 		}
 
 		return $parsedAnswer;
@@ -70,21 +83,23 @@ class Response extends SurveyGizmoCore
 	 */
 	private function parseAnswer($answer)
 	{
-		if (!isset($answer['question_id'])) {
+		if (isset($answer['question_id']) == false) {
 			throw new SurveyGizmoException('Question id is not existing in the current array of answer', 1);
 		}
 
-		if (!isset($answer['option_id'])) {
+		if (isset($answer['option_id']) == false) {
 			throw new SurveyGizmoException("Option id is not existing in the current array of answer", 1);
 		}
 
-		if (!isset($answer['value'])) {
+		if (isset($answer['value']) == false) {
 			throw new SurveyGizmoException("Value is not existing in the current array of answer", 1);
 		}
 
-		return [
+		$answer = [
 			'data['. $answer['question_id'] .']['. $answer['option_id'] .']' => $answer['value']
 		];
+
+		return $answer;
 	}
 
 	/**
@@ -94,8 +109,10 @@ class Response extends SurveyGizmoCore
 	 */
 	private function isAssoc($array)
 	{
-		$keys = array_keys($array);
+		foreach($array as $key => $value) {
+			if (is_array($value)) return true;
+		}
 
-		return array_keys($keys) === $keys;
+		return false;
 	}
 }
