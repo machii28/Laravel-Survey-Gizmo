@@ -38,12 +38,12 @@ class Response extends SurveyGizmoCore
 		];
 
 		foreach($parsedAnswer as $key => $value) {
-			$query[key($value)] = $value[key($value)];
+			$query[$key] = $value;
 		}
 
-		$this->sendRequest($responseUrl, $query);
+		$response = $this->sendRequest($responseUrl, $query);
 
-		return $answer;
+		return $response;
 	}
 
 	/**
