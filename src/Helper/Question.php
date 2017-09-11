@@ -3,7 +3,6 @@
 namespace SurveyGizmo\Helper;
 
 use SurveyGizmo\SurveyGizmoCore;
-use GuzzleHttp\Client;
 use \Exception;
 
 /**

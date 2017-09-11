@@ -2,7 +2,7 @@
 
 namespace SurveyGizmo;
 
-use GuzzleHttp\CLient;
+use GuzzleHttp\Client;
 /**
  * SurveyGizmoCore
  *
