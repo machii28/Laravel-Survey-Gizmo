@@ -1,2 +1,9 @@
 # Laravel-Survey-Gizmo
-A Library for the usage of API from Survey Gizmo
+
+A Laravel SurveyGizmo API implementation.
+
+## Installation
+
+```
+composer install machiii\laravel-surveygizmo
+```
