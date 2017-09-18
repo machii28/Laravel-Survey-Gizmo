@@ -18,12 +18,33 @@ use \Exception;
 class Question extends SurveyGizmoCore
 {
 	/**
+	 * Custom Survey Id
+	 * @var string
+	 */
+	protected $surveyId;
+
+	/**
+	 * Response constructor
+	 * @param string $surveyId Custom survey id
+	 */
+	public function __construct($surveyId = null)
+	{
+		parent::__construct();
+
+		if (is_null($surveyId) == false) {
+			$this->surveyId = $surveyId();
+		} else {
+			$this->surveyId = $this->getSurveyId();
+		}
+	}
+
+	/**
 	 * Getting the survey
 	 * @return object
 	 */
 	public function survey()
 	{
-		$surveyUrl = '/survey/' . $this->getSurveyId();
+		$surveyUrl = '/survey/' . $this->surveyId;
 
 		$response = $this->sendRequest($surveyUrl);
 
@@ -41,7 +62,7 @@ class Question extends SurveyGizmoCore
 	 */
 	public function question($questionId)
 	{
-		$questionUrl = '/survey/' . $this->getSurveyId() . '/surveyquestion/' . $questionId;
+		$questionUrl = '/survey/' . $this->surveyId . '/surveyquestion/' . $questionId;
 
 		$response = $this->sendRequest($questionUrl);
 
