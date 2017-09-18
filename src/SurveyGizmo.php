@@ -48,9 +48,9 @@ class SurveyGizmo
 	 * Get the survey
 	 * @return object
 	 */
-	public function survey()
+	public function survey($surveyId = null)
 	{
-		$question = new Question();
+		$question = new Question($surveyId);
 		return $question->survey();
 	}
 
@@ -59,9 +59,9 @@ class SurveyGizmo
 	 * @param  integer $id
 	 * @return object
 	 */
-	public function question($id = null)
+	public function question($id = null, $surveyId = null)
 	{
-		$question = new Question();
+		$question = new Question($surveyId);
 
 		if (is_null($id)) {
 			throw new SurveyGizmoException('Question id should be defined', 1);
@@ -70,9 +70,9 @@ class SurveyGizmo
 		return $question->question($id);
 	}
 
-	public function answer($answer)
+	public function answer($answer, $surveyId = null)
 	{
-		$response = new Response();
+		$response = new Response($surveyId);
 		return $response->send($answer);
 	}
 }

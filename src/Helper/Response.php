@@ -19,6 +19,27 @@ use GuzzleHttp\Client;
 class Response extends SurveyGizmoCore
 {
 	/**
+	 * Custom Survey Id
+	 * @var string
+	 */
+	protected $surveyId;
+
+	/**
+	 * Response constructor
+	 * @param string $surveyId Custom survey id
+	 */
+	public function __construct($surveyId = null)
+	{
+		parent::__construct();
+
+		if (is_null($surveyId) == false) {
+			$this->surveyId = $surveyId();
+		} else {
+			$this->surveyId = $this->getSurveyId();
+		}
+	}
+
+	/**
 	 * Send a response to SurveyGizmo
 	 * @param  array $answer
 	 * @return object
@@ -31,7 +52,7 @@ class Response extends SurveyGizmoCore
 			$parsedAnswer = $this->parseAnswer($answer);
 		}
 
-		$responseUrl = '/survey/' . $this->getSurveyId() . '/surveyresponse/';
+		$responseUrl = '/survey/' . $this->surveyId . '/surveyresponse/';
 
 		$query = [
 			'_method' => 'PUT'
