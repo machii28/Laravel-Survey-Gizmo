@@ -32,7 +32,7 @@ class Question extends SurveyGizmoCore
 		parent::__construct();
 
 		if (is_null($surveyId) == false) {
-			$this->surveyId = $surveyId();
+			$this->surveyId = $surveyId;
 		} else {
 			$this->surveyId = $this->getSurveyId();
 		}
